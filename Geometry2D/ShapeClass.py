@@ -5,20 +5,17 @@ Created on 9 oct. 2019
 '''
 import abc
 
-
 class Shape(metaclass=abc.ABCMeta):        
     
     # x is left origin
     # y is lower origin
     
-    def __init__(self, x=0, y=0, colour=None):
-        self.x = x 
-        self.y = y
-        self.colour = colour
+    def __init__(self, originPoint, colour=None):
+        self.__originPoint = originPoint
+        self.__colour = colour
     
-    def move(self,x,y):
-        self.x = x 
-        self.y = y
+    def move(self,newPoint):
+        self.__originPoint = newPoint
     
     def scale(self, factor):
         self.scaleHorizontally(factor)

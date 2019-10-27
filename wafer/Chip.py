@@ -3,7 +3,8 @@ Created on 4 oct. 2019
 
 @author: DavidS
 '''
-from wafer import Shape
+from Shapes import Shape
+
 
 class Chip(Shape):
     '''
@@ -12,7 +13,7 @@ class Chip(Shape):
     
     def __init__(self,x,y,colour, width=1000, height=1000, enabled=False, isBlank=False):
 
-        Shape(Chip,self).__init__(x, y, colour)
+        Shape(Chip, self).__init__(x, y, colour)
         self.__width = width
         self.__height = height
         self.__enabled = enabled

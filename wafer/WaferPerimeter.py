@@ -3,9 +3,10 @@ Created on 4 oct. 2019
 
 @author: DavidS
 '''
-   
-from wafer import Shape
-    
+
+from Shapes import Shape
+
+
 class WaferPerimeter(Shape):
     '''
     classdocs
@@ -15,7 +16,7 @@ class WaferPerimeter(Shape):
     #101.6mm = 4" 
     def __init__(self,x,y,colour,diameterInMillimeters=101.6, primaryFlat=True, secondaryFlat=WaferPerimeter.SECONDARY_FLAT.get("None")):
         
-        Shape(WaferPerimeter,self).__init__(x, y, colour)
+        Shape(WaferPerimeter, self).__init__(x, y, colour)
         self.diameterInMillimeters=diameterInMillimeters
         self.primaryFlat=primaryFlat
         if WaferPerimeter.SECONDARY_FLAT.get(secondaryFlat)==None:
