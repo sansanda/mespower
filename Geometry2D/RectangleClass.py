@@ -4,11 +4,11 @@ Created on 4 oct. 2019
 @author: DavidS
 '''
 
-from Geometry2D.ShapeClass import Shape
+from Geometry2D.Shape2DClass import Shape2D
 from Geometry2D.PointClass import Point
 import abc
 
-class Rectangle(Shape):
+class Rectangle(Shape2D):
     '''
     classdocs
     '''
@@ -16,30 +16,37 @@ class Rectangle(Shape):
     # finalPoint of te diagonal (Rigth,upper corner)
 
     def __init__(self,originPoint,colour,width=1000,height=1000):
-
-        Shape(Rectangle, self).__init__(originPoint, colour)
-        self.__width = width
-        self.__height = height
-        self.__centerPoint = Point(self.__originPoint.getX()+width/2,self.__originPoint.getY()+height/2)
+        super().__init__(originPoint,colour,width,height)
 
 
     def collides(self, shape):
         return
 
-    def scaleVertically(self, factor):
-        return
-
-    def scaleHorizontally(self, factor):
-        return
-
-    def getArea(self):
+    def getRealArea(self):
         return
 
     def __str__(self):
         return
 
 def main():
-    rec1 = Rectangle(Point(2, 2),None)
+    rec1 = Rectangle(Point(2, 2),None,500,500)
+    print(rec1.getArea())
+    print(rec1.getOriginPoint())
+    print(rec1.getCenterPoint())
+    print(rec1.getFinalPoint())
+
+    rec1.move(Point(4, 4))
+    print(rec1.getArea())
+    print(rec1.getCenterPoint())
+    print(rec1.getDiagonalLine())
+    rec1.scale(2.0)
+    print(rec1.getCenterPoint())
+    print(rec1.getArea())
+    print(rec1.getDiagonalLine())
+
+    rec2 = Rectangle(Point(2, 2),None,500,1000)
+    print(rec2.getDiagonalLine().getAngle())
+
 
 if __name__ == '__main__':
     main()
