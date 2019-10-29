@@ -22,8 +22,6 @@ class Rectangle(Shape2D):
     def __init__(self,originPoint,colour,width=1000,height=1000):
         super().__init__(originPoint,colour,width,height)
 
-    def __init__(self):
-        self.__init__(Point(0,0),'black')
 
     #methods for transformations to others shapes
 
@@ -33,7 +31,7 @@ class Rectangle(Shape2D):
         if not diameter: c.setDiameter(self.getHeight()) #return shape as circle with diameter = height
         return c
 
-    def collides(self, shape):
+    def collides(self,shape):
         return
 
     def getRealArea(self):
@@ -44,7 +42,6 @@ class Rectangle(Shape2D):
 
 def main():
     rec1 = Rectangle(Point(2, 2),'black',500,500)
-    rec1 = Rectangle()
 
     print(rec1.getArea())
     print(rec1.getOriginPoint())
@@ -70,7 +67,7 @@ def main():
     rec2 = Rectangle(Point(2, 2),None,500,1000)
     print(rec2.getBaseLine())
     print(rec2.getBaseLine().getAngle())
-    print(rec2.getAsCenteredCircle())
+    print(rec2.collides(line2))
 
 
 if __name__ == '__main__':

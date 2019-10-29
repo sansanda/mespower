@@ -35,23 +35,39 @@ class Line:
         self.__originPoint = originPoint
         self.__finalPoint = finalPoint
 
+    def getOriginPoint(self):
+        return self.__originPoint
+
+    def getFinalPoint(self):
+        return self.__finalPoint
+
     def getSlope(self):
         try:
-            return (self.__finalPoint.getY() - self.__originPoint.getY()) / (self.__finalPoint.getX() - self.__originPoint.getX())
+            return (self.getFinalPoint().getY() - self.getOriginPoint().getY()) / (self.getFinalPoint().getX() - self.getOriginPoint().getX())
         except ZeroDivisionError:
             return None
+
+    def getYAxisCrossPoint(self):
+        if self.getSlope()==None: return None
+        return Point(0,self.getOriginPoint().getY() - (self.getOriginPoint().getX() * self.getSlope()))
 
     def getAngle(self):
         return Line.getLineAngle(self)
 
+    def collides(self,shape):
+        return self==shape
+
     def __repr__(self):
         return str(self.__dict__)
 
-    # def isonline(self, point):
-    #     if (self.a*point.x+self.b*point.y+self.c)==0:
-    #         return True
-    #     else:
-    #         return False
+    def __eq__(self, otherLine, rel_tol=1e-06, abs_tol=0.0):
+        """Overrides the default implementation"""
+        equals = False
+        if isinstance(otherLine, Line):
+            if ((self.getSlope() == None) & (otherLine.getSlope() == None)): equals = True
+            elif ((not self.getSlope()) & (not otherLine.getSlope())):
+                equals = (self.getYAxisCrossPoint()==otherLine.getYAxisCrossPoint()) & math.isclose(self.getSlope(),otherLine.getSlope(),rel_tol=rel_tol, abs_tol=abs_tol)
+        return equals
 
 def main():
     line = Line(Point(2, 2), Point(1, 4))
@@ -61,6 +77,8 @@ def main():
     line5 = Line(Point(0, 0), Point(0, -4))
     line6 = Line(Point(0, 0), Point(10, -4))
     line7 = Line(Point(0, 0), Point(0, 1))
+    line8 = Line(Point(0, 0), Point(5, 5))
+    line9 = Line(Point(0,0) , Point(10,10))
 
     print(line.getAngle())
     print(line2.getAngle())
@@ -70,6 +88,11 @@ def main():
     print(line6.getAngle())
     print(line7.getAngle())
 
+    print(line == line2)
+    print(line3.collides(line4))
+
+    print(line3.getSlope())
+    print(line9.getYAxisCrossPoint())
 
 if __name__ == '__main__':
     main()
