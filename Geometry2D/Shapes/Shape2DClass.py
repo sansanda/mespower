@@ -10,11 +10,11 @@ class Shape2D():
     
     # x is left origin
     # y is lower origin
-
+    # dimensions in millimeters
 
     #private
 
-    def __init__(self,originPoint,colour,width,height):
+    def __init__(self,originPoint=Point(0,0),colour='black',width=1000,height=1000):
         self.__originPoint = originPoint
         self.__colour = colour
         self.__width = width
@@ -51,13 +51,25 @@ class Shape2D():
     def __updateBaseLine(self):
         self.__baseLine = Line(self.__originPoint,self.__finalBasePoint)
 
-    #public
+    #public methods
+
+    # get dimensions
+
+    def getWidth(self):
+        return self.__width
+
+    def getHeight(self):
+        return self.__height
+
+    #get lines of shape
 
     def getDiagonalLine(self):
         return self.__diagonalLine
 
     def getBaseLine(self):
         return self.__baseLine
+
+    #get points of shape
 
     def getOriginPoint(self):
         return self.__originPoint
@@ -71,6 +83,7 @@ class Shape2D():
     def getFinalBasePoint(self):
         return self.__finalBasePoint
 
+    # get areas
     def getArea(self):
         return (self.__width*self.__height)
 
