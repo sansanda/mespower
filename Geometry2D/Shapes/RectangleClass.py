@@ -4,16 +4,18 @@ Created on 4 oct. 2019
 @author: DavidS
 '''
 
-from Geometry2D.Shape2DClass import Shape2D
+from Geometry2D.Shapes.Shape2DClass import Shape2D
 from Geometry2D.PointClass import Point
-import abc
+from Geometry2D.LineClass import  Line
 
 class Rectangle(Shape2D):
     '''
     classdocs
     '''
-    # initialPoint of te diagonal (left,bottom corner)
-    # finalPoint of te diagonal (Rigth,upper corner)
+    # initialPoint (left,bottom corner)
+    # finalPoint   (Rigth,upper corner)
+    # basePoint    (Rigth,bottom corner)
+    # dimensions in millimeters (width and height)
 
     def __init__(self,originPoint,colour,width=1000,height=1000):
         super().__init__(originPoint,colour,width,height)
@@ -33,7 +35,7 @@ def main():
     print(rec1.getArea())
     print(rec1.getOriginPoint())
     print(rec1.getCenterPoint())
-    print(rec1.getFinalPoint())
+    print(rec1.getFinalDiagonalPoint())
 
     rec1.move(Point(4, 4))
     print(rec1.getArea())
@@ -42,10 +44,18 @@ def main():
     rec1.scale(2.0)
     print(rec1.getCenterPoint())
     print(rec1.getArea())
-    print(rec1.getDiagonalLine())
+    line1 = rec1.getDiagonalLine()
+    print(line1)
+    print(line1.getAngle())
+
+    line2 = Line(Point(0,0),Point(-2,10))
+    print('line1 Angle = ',line1.getAngle())
+    print('line2 Angle = ',line2.getAngle())
+    print('Angle Between Lines 1 and 2 = ',Line.getLinesAngle(line1,line2))
 
     rec2 = Rectangle(Point(2, 2),None,500,1000)
-    print(rec2.getDiagonalLine().getAngle())
+    print(rec2.getBaseLine())
+    print(rec2.getBaseLine().getAngle())
 
 
 if __name__ == '__main__':

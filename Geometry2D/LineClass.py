@@ -4,21 +4,11 @@ import math
 
 class Line:
 
-    def __init__(self, originPoint, finalPoint):
-        if (originPoint==finalPoint): raise Exception('PointsEquals', 'Points cannot be equals in line definition')
-        self.__originPoint = originPoint
-        self.__finalPoint = finalPoint
+    @classmethod
+    def getLineAngle(cls,line):
 
-    def getSlope(self):
-        try:
-            return (self.__finalPoint.getY() - self.__originPoint.getY()) / (self.__finalPoint.getX() - self.__originPoint.getX())
-        except ZeroDivisionError:
-            return None
-
-    def getAngle(self):
-
-        deltaX = self.__finalPoint.getX()-self.__originPoint.getX()
-        deltaY = self.__finalPoint.getY()-self.__originPoint.getY()
+        deltaX = line.__finalPoint.getX()-line.__originPoint.getX()
+        deltaY = line.__finalPoint.getY()-line.__originPoint.getY()
 
         try:
             angle = atanInDegrees = math.degrees(math.atan(deltaY/deltaX))
@@ -31,6 +21,28 @@ class Line:
             if (deltaY>0): angle = 90.0
             else: angle  = 270.0
         return angle
+
+    @classmethod
+    def getLinesAngle(cls,line1,line2):
+
+        angleLine1 = cls.getLineAngle(line1)
+        angleLine2 = cls.getLineAngle(line2)
+        return math.fabs(angleLine1-angleLine2)
+
+
+    def __init__(self, originPoint, finalPoint):
+        if (originPoint==finalPoint): raise Exception('PointsEquals', 'Points cannot be equals in line definition')
+        self.__originPoint = originPoint
+        self.__finalPoint = finalPoint
+
+    def getSlope(self):
+        try:
+            return (self.__finalPoint.getY() - self.__originPoint.getY()) / (self.__finalPoint.getX() - self.__originPoint.getX())
+        except ZeroDivisionError:
+            return None
+
+    def getAngle(self):
+        return Line.getLineAngle(self)
 
     def __repr__(self):
         return str(self.__dict__)
