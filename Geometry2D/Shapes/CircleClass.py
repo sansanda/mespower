@@ -8,6 +8,7 @@ Created on 29 oct. 2019
 from Geometry2D.Shapes.Shape2DClass import Shape2D
 from Geometry2D.PointClass import Point
 
+import math
 
 class Circle(Shape2D):
     '''
@@ -38,25 +39,16 @@ class Circle(Shape2D):
         return
 
 def main():
-    rec1 = Rectangle(Point(2, 2),None,500,500)
-    print(rec1.getArea())
-    print(rec1.getOriginPoint())
-    print(rec1.getCenterPoint())
-    print(rec1.getFinalDiagonalPoint())
+    circ1 = Circle(Point(2, 2),'black',500)
+    circ2 = Circle(Point(2, 2),'black',500)
+    circ3 = Circle(Point(2, 2),'black',600)
+    circ4 = Circle(Point(1, 2),'black',500)
 
-    rec1.move(Point(4, 4))
-    print(rec1.getArea())
-    print(rec1.getCenterPoint())
-    print(rec1.getDiagonalLine())
-    rec1.scale(2.0)
-    print(rec1.getCenterPoint())
-    print(rec1.getArea())
-    print(rec1.getDiagonalLine())
-
-    rec2 = Rectangle(Point(2, 2),None,500,1000)
-    print(rec2.getBaseLine())
-    print(rec2.getBaseLine().getAngle())
-
+    print(circ1==circ2)
+    print(circ2==circ3)
+    print(circ2==circ4)
+    print(circ3==circ4)
+    print(circ4==circ4)
 
 if __name__ == '__main__':
     main()

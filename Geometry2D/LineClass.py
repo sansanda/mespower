@@ -64,8 +64,8 @@ class Line:
         """Overrides the default implementation"""
         equals = False
         if isinstance(otherLine, Line):
-            if ((self.getSlope() == None) & (otherLine.getSlope() == None)): equals = True
-            elif ((not self.getSlope()) & (not otherLine.getSlope())):
+            if ((self.getSlope() == None) & (otherLine.getSlope() == None)): equals = True #caso en que las dos lineas son perpendiculares al eje x (slope infinita)
+            elif ((not self.getSlope()) & (not otherLine.getSlope())): # Ninguna de las dos lineas es perpendicular al eje x. Debemos comparar b y m
                 equals = (self.getYAxisCrossPoint()==otherLine.getYAxisCrossPoint()) & math.isclose(self.getSlope(),otherLine.getSlope(),rel_tol=rel_tol, abs_tol=abs_tol)
         return equals
 

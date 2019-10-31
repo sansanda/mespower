@@ -15,8 +15,8 @@ class CollisionDetector():
         collides = False
 
         if isinstance(shape1,Point):
-            if isinstance(shape2, Point):
-                if (shape1==shape2): collides = True
+            if isinstance(shape2, Line):
+                pass
 
         if isinstance(shape1, Line):
             pass

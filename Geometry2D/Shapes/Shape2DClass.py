@@ -5,6 +5,7 @@ Created on 9 oct. 2019
 '''
 from Geometry2D.PointClass import Point
 from Geometry2D.LineClass import Line
+import math
 
 class Shape2D():
     
@@ -116,6 +117,16 @@ class Shape2D():
         self.update()
 
 
+    #It is based on widht and height, so it not takes into account irregular forms like polygons
+    def __eq__(self, otherShape2D, rel_tol=1e-06, abs_tol=0.0):
+        """Overrides the default implementation"""
+        if isinstance(otherShape2D, Shape2D):
+            return ((self.getCenterPoint()==otherShape2D.getCenterPoint()) &
+                    math.isclose(self.getWidth(),otherShape2D.getWidth(),rel_tol=rel_tol, abs_tol=abs_tol) &
+                    math.isclose(self.getHeight(),otherShape2D.getHeight(),rel_tol=rel_tol, abs_tol=abs_tol)
+                    )
+        return False
+
     #abstract methods
     def collides(self,shape):
         raise NotImplementedError
@@ -125,3 +136,4 @@ class Shape2D():
 
     def __str__(self):
         raise NotImplementedError
+

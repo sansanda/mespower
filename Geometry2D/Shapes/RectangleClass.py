@@ -7,8 +7,8 @@ Created on 4 oct. 2019
 from Geometry2D.Shapes.Shape2DClass import Shape2D
 from Geometry2D.PointClass import Point
 from Geometry2D.LineClass import  Line
-from Geometry2D.Shapes.CircleClass import Circle
 
+import math
 
 class Rectangle(Shape2D):
     '''
@@ -22,14 +22,7 @@ class Rectangle(Shape2D):
     def __init__(self,originPoint,colour,width=1000,height=1000):
         super().__init__(originPoint,colour,width,height)
 
-
     #methods for transformations to others shapes
-
-    def getAsCenteredCircle(self, diameter=None):
-        c = Circle()
-        c.move(self.getCenterPoint()) #circle is centered on x,y shape
-        if not diameter: c.setDiameter(self.getHeight()) #return shape as circle with diameter = height
-        return c
 
     def collides(self,shape):
         return
@@ -42,6 +35,16 @@ class Rectangle(Shape2D):
 
 def main():
     rec1 = Rectangle(Point(2, 2),'black',500,500)
+    rec2 = Rectangle(Point(2, 2),'black',500,500)
+    rec3 = Rectangle(Point(2, 2),'black',600,500)
+    rec4 = Rectangle(Point(1, 2),'black',500,500)
+
+    print(rec1==rec2)
+    print(rec2==rec3)
+    print(rec2==rec4)
+    print(rec3==rec4)
+    print(rec4==rec4)
+
 
     print(rec1.getArea())
     print(rec1.getOriginPoint())
